@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senac - Cadastro de Cursos</title>
+    <link rel="stylesheet" href="/css/cadastro.css">
+</head>
+<body>
+
+    <form action="/curso" method="POST">
+        <h1>Cadastrar Novo Curso</h1>
+
+        <label for="curso">Nome do Curso:</label>
+        <input type="text" name="curso" id="curso" placeholder="Ex: Java Script" required>
+        
+        <label for="ch">Carga Horária (horas):</label>
+        <input type="number" name="ch" id="ch" placeholder="Ex: 40" required>
+        
+        <label for="tipo">Tipo:</label>
+        <input type="text" name="tipo" id="tipo" placeholder="EAD ou Presencial" required>
+        
+        <button type="submit">Finalizar Cadastro</button>
+    </form>
+
+</body>
+</html>
