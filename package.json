@@ -1,7 +1,6 @@
 {
   "name": "serverexpress",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -23,5 +22,6 @@
   "dependencies": {
     "express": "^5.2.1",
     "nodemon": "^3.1.14"
-  }
+  },
+  "description": ""
 }
