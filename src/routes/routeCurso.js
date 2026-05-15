@@ -1,33 +1,26 @@
-import express from "express";
-import path from "path";
-import { criarCurso } from "../controllers/controllerCurso.js";
-const routeCurso = express.Router();
+import express from 'express'
+import { criarCurso, listarCursos, buscarCurso, atualizarCurso, removerCurso, alterarCurso, cadastroCurso } from '../src/controllers/controllerCurso.js'
 
+const routeCurso = express.Router()
 
-// rota para acessar o formulário de cadastro
+routeCurso.get('/cadastro', cadastroCurso)
 
-routeCurso.get("/cadastro", (req, res) => {
-    res.sendFile(path.resolve("./public/html/cadastro.html"));
-});
+//Rota para adicionar curso
+routeCurso.post('/curso', criarCurso)
 
+//rota para mostrar todos os cursos
+routeCurso.get('/cursos', listarCursos)
 
-//rota para criar um curso
-routeCurso.post("/curso", criarCurso);
+// rota para buscar um curso pelo nome do curso
+routeCurso.get('/curso/:curso', buscarCurso)
 
-//rota para atualizar todos os dados
-routeCurso.put("/curso/:cod", atualizarCurso);
-/*
-routeCurso.put("/curso/:cod", (req, res) => {
-    const cursoEncontrado = cursos.find(c => c.curso === parseInt(req.params.curso));
-    if (!cursoEncontrado) {
-        return res.status(404).json({ mensagem: "Curso não encontrado!" });
-    }
-    res.status(200).json({ mensagem: "Curso atualizado com sucesso!", cursoEncontrado }); // Envia uma resposta de sucesso
-});
-*/
+// rota atulizar todos os dados
+routeCurso.put('/curso/:cod', atualizarCurso)
 
-routeCurso.delete("/curso/:cod", removerCurso);
+// Rota para remover curso pelo código
+routeCurso.delete('/curso/:cod', removerCurso)
 
-routeCurso.patch("/curso/:cod", alterarCurso);
+// atualizar um ou mais dados do curso
+routeCurso.patch('/curso/:cod', alterarCurso)
 
-export default routeCurso;
+export default routeCurso

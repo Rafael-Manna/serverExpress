@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/css/cadastro.css">
 </head>
 <body>
-
     <form action="/curso" method="POST">
         <h1>Cadastrar Novo Curso</h1>
 
@@ -21,6 +20,12 @@
         <input type="text" name="tipo" id="tipo" placeholder="EAD ou Presencial" required>
         
         <button type="submit">Finalizar Cadastro</button>
+
+        <H1>Buscar Curso</H1>
+        <form action="/curso/buscar" method="GET">
+            <input type="text" name="nome" placeholder="Nome do Curso" required>
+            <button type="submit">Buscar</button>
+        </form>
     </form>
 
 </body>
