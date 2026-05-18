@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
 import mysql from 'mysql2';
-import routeCurso from './routes/routeCurso.js'; // Ajuste para './src/routes/routeCurso.js' se a pasta routes estiver dentro de src
+import routeCurso from './src/routes/routeCurso.js' // Ajuste para './src/routes/routeCurso.js' se a pasta routes estiver dentro de src
 
 // Carrega as variáveis de ambiente do arquivo .env
 dotenv.config();

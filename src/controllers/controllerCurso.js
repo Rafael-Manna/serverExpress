@@ -1,5 +1,5 @@
 import path from "path";
-import { bdConexao } from "../index.js"; // Certifique-se de que o caminho para o seu index.js está correto
+import { bdConexao } from "../../index.js"; // Certifique-se de que o caminho para o seu index.js está correto
 
 // 1. ROTA GET: Renderiza/Envia a página HTML de cadastro
 export const cadastroCurso = (req, res) => {

@@ -1,5 +1,5 @@
 import express from 'express'
-import { criarCurso, listarCursos, buscarCurso, atualizarCurso, removerCurso, alterarCurso, cadastroCurso } from '../src/controllers/controllerCurso.js'
+import { criarCurso, listarCursos, buscarCurso, atualizarCurso, removerCurso, alterarCurso, cadastroCurso } from '../controllers/controllerCurso.js'
 
 const routeCurso = express.Router()
 
