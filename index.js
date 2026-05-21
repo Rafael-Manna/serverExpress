@@ -1,46 +1,40 @@
-import express from 'express';
-import path from 'path';
-import dotenv from 'dotenv';
-import mysql from 'mysql2';
-import routeCurso from './src/routes/routeCurso.js' // Ajuste para './src/routes/routeCurso.js' se a pasta routes estiver dentro de src
+import express from 'express'
+import routeCurso from './routes/routeCurso.js'
+import path from 'path'
+import morgan from 'morgan'
+import dotenv from 'dotenv'
+import bdConexao from './config/database.js'
+import sequelize from './config/orm.js'
+import Cursos from './models/modelCursoORM.js'
+import { sincronizarBD } from './config/orm.js'
 
-// Carrega as variáveis de ambiente do arquivo .env
-dotenv.config();
+sincronizarBD()
 
-const server = express();
-const PORT = process.env.PORT;
-const HOST = process.env.HOST;
+dotenv.config()
 
-// Configuração e exportação da conexão com o banco de dados MySQL
-export const bdConexao = mysql.createConnection({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME 
-});
+const app = express()
 
-// Conectando ao Banco de Dados
-bdConexao.connect((err) => {
-    if (err) {
-        console.error('Erro ao conectar ao banco de dados:', err);
-        return;
-    }
-    console.log('Conexão com o banco de dados estabelecida com sucesso!');
-});
+const PORT = process.env.EXPRESS_PORT || 3000
+const HOST = process.env.EXPRESS_HOST || 'localhost'
 
-// Middlewares para o Express entender JSON e formulários HTML (URLEncoded)
-server.use(express.json());
-server.use(express.urlencoded({ extended: true }));
+app.use(express.json()) //middleware para fazer o parsear JSON no corpo das requisições
+app.use(express.urlencoded({extended: true})) //middleware para fazer o parsear dados de formulários (x-www-form-urlencoded)
 
-// Configuração de arquivos estáticos (CSS, Imagens, JS do Front-end)
-// Ajuste o caminho se sua estrutura de pastas for diferente (ex: "src/public")
-server.use(express.static(path.resolve("src", "public"))); 
+app.use(express.static(path.join(import.meta.dirname, './public'))) //middleware para arquivos estáticos (como HTML, CSS, JS) da pasta 'public'
+app.use(morgan('dev')) //middleware para logar as requisições no console
 
-// Vinculando todas as rotas estruturadas no seu arquivo routeCurso.js
-server.use(routeCurso);
+app.set('view engine', 'ejs') //configuração para usar o EJS como template engine
+app.set('views', path.join(import.meta.dirname, './views')) //configuração para definir a pasta onde estão as views do EJS
 
-// Iniciando o servidor na porta configurada no .env
-server.listen(PORT, HOST, () => {    
-    console.log(`Servidor rodando em http://${HOST}:${PORT}`);
-});
+// app.use('/curso', routeCurso) // usando as rotas de curso httpp://localhost:3000/curso/endereço_da_rota
+
+app.use(routeCurso)
+
+app.get('/', (req, res) => {
+    // res.send('<h1> Página Inicial </h1>')
+    res.render('index', {nome: 'SENAC'})
+})
+
+app.listen(PORT, HOST, () => {
+    console.log(`Servidor em execução em: http://${HOST}:${PORT}`)
+})
