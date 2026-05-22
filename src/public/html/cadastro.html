@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Senac - Cadastro de Cursos</title>
-    <link rel="stylesheet" href="/css/cadastro.css">
+    <link rel="stylesheet" href="./css/cadastro.css">
 </head>
 <body>
     <form action="/curso" method="POST">
         <h1>Cadastrar Novo Curso</h1>
+        <label for="cod">Código do Curso:</label>
+        <input type="text" name="cod" id="cod" placeholder="Ex: JS001" required>
 
         <label for="curso">Nome do Curso:</label>
         <input type="text" name="curso" id="curso" placeholder="Ex: Java Script" required>

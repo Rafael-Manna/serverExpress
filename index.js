@@ -1,12 +1,11 @@
 import express from 'express'
-import routeCurso from './routes/routeCurso.js'
+import routeCurso from './src/routes/routeCurso.js'
 import path from 'path'
 import morgan from 'morgan'
 import dotenv from 'dotenv'
-import bdConexao from './config/database.js'
-import sequelize from './config/orm.js'
-import Cursos from './models/modelCursoORM.js'
-import { sincronizarBD } from './config/orm.js'
+import sequelize from './src/config/orm.js'
+import Cursos from './src/models/modelcurso.js'
+import { sincronizarBD } from './src/config/orm.js'
 
 sincronizarBD()
 
